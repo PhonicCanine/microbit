@@ -1,6 +1,58 @@
-"""Joseph Fergusson, 2019"""
+"""Micro:Bit stubs for Visual Studio Code
+
+Joseph Fergusson, 2019"""
 
 from Image import _Image
+
+class _display:
+    def get_pixel(x,y):
+        """get the brightness of the addressed pixel"""
+        return 9
+
+    def set_pixel(x,y,value):
+        """set the brightness of the addressed pixel"""
+        z = value
+
+    def clear():
+        """clears the display"""
+        z = 0
+
+    def show(*args):
+        """shows the image. Use either:
+        show(image)
+        shows the image on the display.
+        or
+        show(value, <>delay, <>*, <>wait, <>loop, <>clear), where fields marked with <> are optional
+        If value is a string, float or integer, display letters/digits in sequence. Otherwise, if value is an iterable sequence of images, display these images in sequence. Each letter, digit or image is shown with delay milliseconds between them.
+    If wait is True, this function will block until the animation is finished, otherwise the animation will happen in the background.
+    If loop is True, the animation will repeat forever.
+    If clear is True, the display will be cleared after the iterable has finished.
+    Note that the wait, loop and clear arguments must be specified using their keyword."""
+        z = 0
+
+    def scroll(value, delay=150, *, wait=True, loop=False, monospace=False):
+        """Scrolls value horizontally on the display. If value is an integer or float it is first converted to a string using str(). The delay parameter controls how fast the text is scrolling.
+    If wait is True, this function will block until the animation is finished, otherwise the animation will happen in the background.
+    If loop is True, the animation will repeat forever.
+    If monospace is True, the characters will all take up 5 pixel-columns in width, otherwise there will be exactly 1 blank pixel-column between each character as they scroll.
+    Note that the wait, loop and monospace arguments must be specified using their keyword."""
+        z = 0
+
+    def on():
+        """turn on the display"""
+        z = 0
+
+    def off():
+        """turn off the display"""
+        z = 0
+
+    def is_on():
+        """returns true if the display is on"""
+        return True
+
+    def read_light_level():
+        """Use the display’s LEDs in reverse-bias mode to sense the amount of light falling on the display. Returns an integer between 0 and 255 representing the light level, with larger meaning more light."""
+        return 255
 
 class _Button():
     """Physical button on the Microbit board"""
@@ -132,6 +184,270 @@ pin16 = _MicroBitDigitalPin()
 
 pin19 = _MicroBitDigitalPin()
 pin20 = _MicroBitDigitalPin()
+
+display = _display()
+
+class _img:
+    class _Image:
+        """Base image class"""
+
+        def width(self):
+            """gets the number of columns in an image"""
+            return 5
+
+        def height(self):
+            """gets the number of rows in an image"""
+            return 5
+
+        def set_pixel(self,x,y,value):
+            """sets the brightness of a pixel at the given position
+            Cannot be used on inbuilt images."""
+            a = 0
+
+        def get_pixel(self,x,y):
+            """returns the brightness of the pixel located at x,y"""
+            return 9
+
+        def shift_left(self,n):
+            """returns a new image created by shifting the image left by n columns"""
+            return _Image()
+
+        def shift_right(self,n):
+            """returns a new image created by shifting the image right by n columns"""
+            return _Image()
+
+        def shift_up(self,n):
+            """returns a new image created by shifting the image up by n rows"""
+            return _Image()
+
+        def shift_down(self,n):
+            """returns a new image created by shifting the image down by n rows"""
+            return _Image()
+
+        def crop(self,x,y,w,h):
+            """return a new image by cropping the picture to a width of w and a height of h, starting with the pixel at column x and row y."""
+            return _Image()
+
+        def copy(self):
+            """return an exact copy of the image"""
+            return _Image()
+
+        def invert(self):
+            """return a new image by inverting the brightness of the pixels in the source image."""
+            return _Image()
+
+        def fill(self,value):
+            """Return a new image by inverting the brightness of the pixels in the source image.
+            Cannot be used on inbuilt images."""
+            return _Image()
+
+        def blit(self,src, x, y, w, h, xdest=0, ydest=0):
+            """Copy the rectangle defined by x, y, w, h from the image src into this image at xdest, ydest. Areas in the source rectangle, but outside the source image are treated as having a value of 0."""
+            a = 0
+
+    HEART = _Image
+    HEART_SMALL = _Image
+
+    HAPPY = _Image
+    SMILE = _Image
+    SAD = _Image
+    CONFUSED = _Image
+    ANGRY = _Image
+    ASLEEP = _Image
+    SURPRISED = _Image
+    SILLY = _Image
+    FABULOUS = _Image
+    MEH = _Image
+
+    YES = _Image
+    NO = _Image
+
+    CLOCK12 = _Image
+    CLOCK11 = _Image
+    CLOCK10 = _Image
+    CLOCK9 = _Image
+    CLOCK8 = _Image
+    CLOCK7 = _Image
+    CLOCK6 = _Image
+    CLOCK5 = _Image
+    CLOCK4 = _Image
+    CLOCK3 = _Image
+    CLOCK2 = _Image
+    CLOCK1 = _Image
+
+    ARROW_N = _Image
+    ARROW_NE = _Image
+    ARROW_E = _Image
+    ARROW_SE = _Image
+    ARROW_S = _Image
+    ARROW_SW = _Image
+    ARROW_W = _Image
+    ARROW_NW = _Image
+
+    TRIANGLE = _Image
+    TRIANGLE_LEFT = _Image
+    CHESSBOARD = _Image
+    DIAMOND = _Image
+    DIAMOND_SMALL = _Image
+    SQUARE = _Image
+    SQUARE_SMALL = _Image
+
+    RABBIT = _Image
+    COW = _Image
+
+    MUSIC_CROTCHET = _Image
+    MUSIC_QUAVER = _Image
+    MUSIC_QUAVERS = _Image
+
+    PITCHFORK = _Image
+
+    XMAS = _Image
+
+    PACMAN = _Image
+    TARGET = _Image
+    TSHIRT = _Image
+    ROLLERSKATE = _Image
+    DUCK = _Image
+    HOUSE = _Image
+    TORTOISE = _Image
+    BUTTERFLY = _Image
+    STICKFIGURE = _Image
+    GHOST = _Image
+    SWORD = _Image
+    GIRAFFE = _Image
+    SKULL = _Image
+    UMBRELLA = _Image
+    SNAKE = _Image
+
+Image = _img
+
+class _spi:
+    def init(baudrate=1000000, bits=8, mode=0, sclk=pin13, mosi=pin15, miso=pin14):
+        """see: https://microbit-micropython.readthedocs.io/en/latest/spi.html"""
+
+    def read(nbytes):
+        """Read at most nbytes. Returns what was read."""
+
+    def write(buffer):
+        """Write the buffer of bytes to the bus."""
+
+    def write_readinto(out, inBuffer):
+        """Write the out buffer to the bus and read any response into the in buffer. The length of the buffers should be the same. The buffers can be the same object."""
+
+spi = _spi
+
+class _uart:
+    def init(baudrate=9600, bits=8, parity=None, stop=1, *, tx=None, rx=None):
+        """Initialize serial communication with the specified parameters on the specified tx and rx pins. Note that for correct communication, the parameters have to be the same on both communicating devices."""
+
+    def any():
+        """Return True if any data is waiting, else False."""
+        return True
+
+    def read(nBytes = None):
+        """Read at most n Bytes if the parameter is set, else read as much as can be read.
+        Returns a Byte array if data can be read, otherwise returns None."""
+        return None
+
+    def readInto(buf, nBytes = None):
+        """Read bytes into the buf. If nbytes is specified then read at most that many bytes. Otherwise, read at most len(buf) bytes.
+    Return value: number of bytes read and stored into buf or None on timeout."""
+        
+    def readline():
+        """Read a line, ending in a newline character.
+    Return value: the line read or None on timeout. The newline character is included in the returned bytes."""
+
+    def write(buf):
+        """Write the buffer to the bus, it can be a bytes object or a string.
+        Return value: number of bytes written or None on timeout."""
+
+uart = _uart
+
+class _i2c:
+    def init(freq=100000, sda=pin20, scl=pin19):
+        """Re-initialize peripheral with the specified clock frequency freq on the specified sda and scl pins.
+    Warning
+    Changing the I²C pins from defaults will make the accelerometer and compass stop working, as they are connected internally to those pins."""
+
+    def scan():
+        """Scan the bus for devices. Returns a list of 7-bit addresses corresponding to those devices that responded to the scan."""
+        return []
+
+    def read(addr, n, repeat=False):
+        """Read n bytes from the device with 7-bit address addr. If repeat is True, no stop bit will be sent."""
+
+    def write(addr, buf, repeat=False):
+        """Write bytes from buf to the device with 7-bit address addr. If repeat is True, no stop bit will be sent."""
+
+i2c = _i2c
+
+class _compass:
+    def calibrate():
+        """Starts the calibration process. An instructive message will be scrolled to the user after which they will need to rotate the device in order to draw a circle on the LED display."""
+
+    def is_calibrated():
+        """Returns True if the compass has been successfully calibrated, and returns False otherwise."""
+        return True
+
+    def clear_calibration():
+        """Undoes the calibration, making the compass uncalibrated again."""
+
+    def get_x():
+        """Gives the reading of the magnetic field strength on the x axis in nano tesla, as a positive or negative integer, depending on the direction of the field."""
+        return 0
+
+    def get_y():
+        """Gives the reading of the magnetic field strength on the y axis in nano tesla, as a positive or negative integer, depending on the direction of the field."""
+        return 0
+
+    def get_z():
+        """Gives the reading of the magnetic field strength on the z axis in nano tesla, as a positive or negative integer, depending on the direction of the field."""
+        return 0
+
+    def heading():
+        """Gives the compass heading, calculated from the above readings, as an integer in the range from 0 to 360, representing the angle in degrees, clockwise, with north as 0."""
+        return 0
+
+    def get_field_strength():
+        """Returns an integer indication of the magnitude of the magnetic field around the device in nano tesla."""
+        return 0
+
+compass = _compass
+
+class _accelerometer:
+    def get_x():
+        """Get the acceleration measurement in the x axis, as a positive or negative integer, depending on the direction. The measurement is given in milli-g. By default the accelerometer is configured with a range of +/- 2g, and so this method will return within the range of +/- 2000mg."""
+        return 2
+
+    def get_y():
+        """Get the acceleration measurement in the y axis, as a positive or negative integer, depending on the direction. The measurement is given in milli-g. By default the accelerometer is configured with a range of +/- 2g, and so this method will return within the range of +/- 2000mg."""
+        return 2
+
+    def get_z():
+        """Get the acceleration measurement in the z axis, as a positive or negative integer, depending on the direction. The measurement is given in milli-g. By default the accelerometer is configured with a range of +/- 2g, and so this method will return within the range of +/- 2000mg."""
+        return 2
+
+    def get_values():
+        """Get the acceleration measurements in all axes at once, as a three-element tuple of integers ordered as X, Y, Z. By default the accelerometer is configured with a range of +/- 2g, and so X, Y, and Z will be within the range of +/-2000mg."""
+        return (2,2,2)
+
+    def current_gesture():
+        """Return the name of the current gesture."""
+        return "face up"
+
+    def is_gesture(name):
+        """Return True or False to indicate if the named gesture is currently active."""
+        return False
+
+    def was_gesture(name):
+        """Return True or False to indicate if the named gesture was active since the last call."""
+        return False
+
+    def get_gestures():
+        """Return a tuple of the gesture history. The most recent is listed last. Also clears the gesture history before returning."""
+        return ()
+
+accelerometer = _accelerometer
 
 """Image stuff"""
 def Image(string = None, width=None, height=None, buffer=None):
