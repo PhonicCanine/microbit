@@ -2,22 +2,20 @@
 
 Joseph Fergusson, 2019"""
 
-from Image import _Image
-
 class _display:
-    def get_pixel(x,y):
+    def get_pixel(self,x,y):
         """get the brightness of the addressed pixel"""
         return 9
 
-    def set_pixel(x,y,value):
+    def set_pixel(self,x,y,value):
         """set the brightness of the addressed pixel"""
         z = value
 
-    def clear():
+    def clear(self):
         """clears the display"""
         z = 0
 
-    def show(*args):
+    def show(self,*args):
         """shows the image. Use either:
         show(image)
         shows the image on the display.
@@ -30,7 +28,7 @@ class _display:
     Note that the wait, loop and clear arguments must be specified using their keyword."""
         z = 0
 
-    def scroll(value, delay=150, *, wait=True, loop=False, monospace=False):
+    def scroll(self,value, delay=150, *, wait=True, loop=False, monospace=False):
         """Scrolls value horizontally on the display. If value is an integer or float it is first converted to a string using str(). The delay parameter controls how fast the text is scrolling.
     If wait is True, this function will block until the animation is finished, otherwise the animation will happen in the background.
     If loop is True, the animation will repeat forever.
@@ -38,19 +36,19 @@ class _display:
     Note that the wait, loop and monospace arguments must be specified using their keyword."""
         z = 0
 
-    def on():
+    def on(self):
         """turn on the display"""
         z = 0
 
-    def off():
+    def off(self):
         """turn off the display"""
         z = 0
 
-    def is_on():
+    def is_on(self):
         """returns true if the display is on"""
         return True
 
-    def read_light_level():
+    def read_light_level(self):
         """Use the display’s LEDs in reverse-bias mode to sense the amount of light falling on the display. Returns an integer between 0 and 255 representing the light level, with larger meaning more light."""
         return 255
 
@@ -187,8 +185,7 @@ pin20 = _MicroBitDigitalPin()
 
 display = _display()
 
-class _img:
-    class _Image:
+class _Image:
         """Base image class"""
 
         def width(self):
@@ -210,40 +207,42 @@ class _img:
 
         def shift_left(self,n):
             """returns a new image created by shifting the image left by n columns"""
-            return _Image()
+            return self
 
         def shift_right(self,n):
             """returns a new image created by shifting the image right by n columns"""
-            return _Image()
+            return self
 
         def shift_up(self,n):
             """returns a new image created by shifting the image up by n rows"""
-            return _Image()
+            return self
 
         def shift_down(self,n):
             """returns a new image created by shifting the image down by n rows"""
-            return _Image()
+            return self
 
         def crop(self,x,y,w,h):
             """return a new image by cropping the picture to a width of w and a height of h, starting with the pixel at column x and row y."""
-            return _Image()
+            return self
 
         def copy(self):
             """return an exact copy of the image"""
-            return _Image()
+            return self
 
         def invert(self):
             """return a new image by inverting the brightness of the pixels in the source image."""
-            return _Image()
+            return self
 
         def fill(self,value):
             """Return a new image by inverting the brightness of the pixels in the source image.
             Cannot be used on inbuilt images."""
-            return _Image()
+            return self
 
         def blit(self,src, x, y, w, h, xdest=0, ydest=0):
             """Copy the rectangle defined by x, y, w, h from the image src into this image at xdest, ydest. Areas in the source rectangle, but outside the source image are treated as having a value of 0."""
             a = 0
+
+class _img(_Image):
 
     HEART = _Image
     HEART_SMALL = _Image
@@ -319,140 +318,150 @@ class _img:
     UMBRELLA = _Image
     SNAKE = _Image
 
-Image = _img
+    def __new__(self):
+        return self
+
+
+Image = _img()
+#def Image(string = None, width=None, height=None, buffer=None, fake=None):
+#    if (fake == True):
+#        return _img
+#    else:
+#        return _img._Image
 
 class _spi:
-    def init(baudrate=1000000, bits=8, mode=0, sclk=pin13, mosi=pin15, miso=pin14):
+    def init(self,baudrate=1000000, bits=8, mode=0, sclk=pin13, mosi=pin15, miso=pin14):
         """see: https://microbit-micropython.readthedocs.io/en/latest/spi.html"""
 
-    def read(nbytes):
+    def read(self,nbytes):
         """Read at most nbytes. Returns what was read."""
 
-    def write(buffer):
+    def write(self,buffer):
         """Write the buffer of bytes to the bus."""
 
-    def write_readinto(out, inBuffer):
+    def write_readinto(self,out, inBuffer):
         """Write the out buffer to the bus and read any response into the in buffer. The length of the buffers should be the same. The buffers can be the same object."""
 
 spi = _spi
 
 class _uart:
-    def init(baudrate=9600, bits=8, parity=None, stop=1, *, tx=None, rx=None):
+    def init(self, baudrate=9600, bits=8, parity=None, stop=1, *, tx=None, rx=None):
         """Initialize serial communication with the specified parameters on the specified tx and rx pins. Note that for correct communication, the parameters have to be the same on both communicating devices."""
 
-    def any():
+    def any(self):
         """Return True if any data is waiting, else False."""
         return True
 
-    def read(nBytes = None):
+    def read(self,nBytes = None):
         """Read at most n Bytes if the parameter is set, else read as much as can be read.
         Returns a Byte array if data can be read, otherwise returns None."""
         return None
 
-    def readInto(buf, nBytes = None):
+    def readInto(self,buf, nBytes = None):
         """Read bytes into the buf. If nbytes is specified then read at most that many bytes. Otherwise, read at most len(buf) bytes.
     Return value: number of bytes read and stored into buf or None on timeout."""
         
-    def readline():
+    def readline(self):
         """Read a line, ending in a newline character.
     Return value: the line read or None on timeout. The newline character is included in the returned bytes."""
 
-    def write(buf):
+    def write(self,buf):
         """Write the buffer to the bus, it can be a bytes object or a string.
         Return value: number of bytes written or None on timeout."""
 
 uart = _uart
 
 class _i2c:
-    def init(freq=100000, sda=pin20, scl=pin19):
+    def init(self,freq=100000, sda=pin20, scl=pin19):
         """Re-initialize peripheral with the specified clock frequency freq on the specified sda and scl pins.
     Warning
     Changing the I²C pins from defaults will make the accelerometer and compass stop working, as they are connected internally to those pins."""
 
-    def scan():
+    def scan(self):
         """Scan the bus for devices. Returns a list of 7-bit addresses corresponding to those devices that responded to the scan."""
         return []
 
-    def read(addr, n, repeat=False):
+    def read(self,addr, n, repeat=False):
         """Read n bytes from the device with 7-bit address addr. If repeat is True, no stop bit will be sent."""
 
-    def write(addr, buf, repeat=False):
+    def write(self,addr, buf, repeat=False):
         """Write bytes from buf to the device with 7-bit address addr. If repeat is True, no stop bit will be sent."""
 
 i2c = _i2c
 
 class _compass:
-    def calibrate():
+    def calibrate(self):
         """Starts the calibration process. An instructive message will be scrolled to the user after which they will need to rotate the device in order to draw a circle on the LED display."""
 
-    def is_calibrated():
+    def is_calibrated(self):
         """Returns True if the compass has been successfully calibrated, and returns False otherwise."""
         return True
 
-    def clear_calibration():
+    def clear_calibration(self):
         """Undoes the calibration, making the compass uncalibrated again."""
 
-    def get_x():
+    def get_x(self):
         """Gives the reading of the magnetic field strength on the x axis in nano tesla, as a positive or negative integer, depending on the direction of the field."""
         return 0
 
-    def get_y():
+    def get_y(self):
         """Gives the reading of the magnetic field strength on the y axis in nano tesla, as a positive or negative integer, depending on the direction of the field."""
         return 0
 
-    def get_z():
+    def get_z(self):
         """Gives the reading of the magnetic field strength on the z axis in nano tesla, as a positive or negative integer, depending on the direction of the field."""
         return 0
 
-    def heading():
+    def heading(self):
         """Gives the compass heading, calculated from the above readings, as an integer in the range from 0 to 360, representing the angle in degrees, clockwise, with north as 0."""
         return 0
 
-    def get_field_strength():
+    def get_field_strength(self):
         """Returns an integer indication of the magnitude of the magnetic field around the device in nano tesla."""
         return 0
 
 compass = _compass
 
 class _accelerometer:
-    def get_x():
+    def get_x(self):
         """Get the acceleration measurement in the x axis, as a positive or negative integer, depending on the direction. The measurement is given in milli-g. By default the accelerometer is configured with a range of +/- 2g, and so this method will return within the range of +/- 2000mg."""
         return 2
 
-    def get_y():
+    def get_y(self):
         """Get the acceleration measurement in the y axis, as a positive or negative integer, depending on the direction. The measurement is given in milli-g. By default the accelerometer is configured with a range of +/- 2g, and so this method will return within the range of +/- 2000mg."""
         return 2
 
-    def get_z():
+    def get_z(self):
         """Get the acceleration measurement in the z axis, as a positive or negative integer, depending on the direction. The measurement is given in milli-g. By default the accelerometer is configured with a range of +/- 2g, and so this method will return within the range of +/- 2000mg."""
         return 2
 
-    def get_values():
+    def get_values(self):
         """Get the acceleration measurements in all axes at once, as a three-element tuple of integers ordered as X, Y, Z. By default the accelerometer is configured with a range of +/- 2g, and so X, Y, and Z will be within the range of +/-2000mg."""
         return (2,2,2)
 
-    def current_gesture():
+    def current_gesture(self):
         """Return the name of the current gesture."""
         return "face up"
 
-    def is_gesture(name):
+    def is_gesture(self,name):
         """Return True or False to indicate if the named gesture is currently active."""
         return False
 
-    def was_gesture(name):
+    def was_gesture(self,name):
         """Return True or False to indicate if the named gesture was active since the last call."""
         return False
 
-    def get_gestures():
+    def get_gestures(self):
         """Return a tuple of the gesture history. The most recent is listed last. Also clears the gesture history before returning."""
         return ()
 
 accelerometer = _accelerometer
 
+
 """Image stuff"""
-def Image(string = None, width=None, height=None, buffer=None):
-    """Image() - Create a blank 5x5 image
-Image(string) - Create an image by parsing the string, a single character returns that glyph
-Image(width, height) - Create a blank image of given size
-Image(width, height, buffer) - Create an image from the given buffer"""
-    return _Image()
+#def Image(string = None, width=None, height=None, buffer=None):
+#"""Image() - Create a blank 5x5 image
+#Image(string) - Create an image by parsing the string, a single character returns that glyph
+#Image(width, height) - Create a blank image of given size
+#Image(width, height, buffer) - Create an image from the given buffer"""
+#    return Image._Image()
