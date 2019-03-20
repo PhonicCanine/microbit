@@ -156,8 +156,8 @@ def temperature(self):
     """Return the temperature of the micro:bit in degrees Celcius."""
     return 26.2
 
-button_a = _Button
-button_b = _Button
+button_a = _Button()
+button_b = _Button()
 
 pin0 = _MicroBitTouchPin()
 pin1 = _MicroBitTouchPin()
@@ -244,79 +244,79 @@ class _Image:
 
 class _img(_Image):
 
-    HEART = _Image
-    HEART_SMALL = _Image
+    HEART = _Image()
+    HEART_SMALL = _Image()
 
-    HAPPY = _Image
-    SMILE = _Image
-    SAD = _Image
-    CONFUSED = _Image
-    ANGRY = _Image
-    ASLEEP = _Image
-    SURPRISED = _Image
-    SILLY = _Image
-    FABULOUS = _Image
-    MEH = _Image
+    HAPPY = _Image()
+    SMILE = _Image()
+    SAD = _Image()
+    CONFUSED = _Image()
+    ANGRY = _Image()
+    ASLEEP = _Image()
+    SURPRISED = _Image()
+    SILLY = _Image()
+    FABULOUS = _Image()
+    MEH = _Image()
 
-    YES = _Image
-    NO = _Image
+    YES = _Image()
+    NO = _Image()
 
-    CLOCK12 = _Image
-    CLOCK11 = _Image
-    CLOCK10 = _Image
-    CLOCK9 = _Image
-    CLOCK8 = _Image
-    CLOCK7 = _Image
-    CLOCK6 = _Image
-    CLOCK5 = _Image
-    CLOCK4 = _Image
-    CLOCK3 = _Image
-    CLOCK2 = _Image
-    CLOCK1 = _Image
+    CLOCK12 = _Image()
+    CLOCK11 = _Image()
+    CLOCK10 = _Image()
+    CLOCK9 = _Image()
+    CLOCK8 = _Image()
+    CLOCK7 = _Image()
+    CLOCK6 = _Image()
+    CLOCK5 = _Image()
+    CLOCK4 = _Image()
+    CLOCK3 = _Image()
+    CLOCK2 = _Image()
+    CLOCK1 = _Image()
 
-    ARROW_N = _Image
-    ARROW_NE = _Image
-    ARROW_E = _Image
-    ARROW_SE = _Image
-    ARROW_S = _Image
-    ARROW_SW = _Image
-    ARROW_W = _Image
-    ARROW_NW = _Image
+    ARROW_N = _Image()
+    ARROW_NE = _Image()
+    ARROW_E = _Image()
+    ARROW_SE = _Image()
+    ARROW_S = _Image()
+    ARROW_SW = _Image()
+    ARROW_W = _Image()
+    ARROW_NW = _Image()
 
-    TRIANGLE = _Image
-    TRIANGLE_LEFT = _Image
-    CHESSBOARD = _Image
-    DIAMOND = _Image
-    DIAMOND_SMALL = _Image
-    SQUARE = _Image
-    SQUARE_SMALL = _Image
+    TRIANGLE = _Image()
+    TRIANGLE_LEFT = _Image()
+    CHESSBOARD = _Image()
+    DIAMOND = _Image()
+    DIAMOND_SMALL = _Image()
+    SQUARE = _Image()
+    SQUARE_SMALL = _Image()
 
-    RABBIT = _Image
-    COW = _Image
+    RABBIT = _Image()
+    COW = _Image()
 
-    MUSIC_CROTCHET = _Image
-    MUSIC_QUAVER = _Image
-    MUSIC_QUAVERS = _Image
+    MUSIC_CROTCHET = _Image()
+    MUSIC_QUAVER = _Image()
+    MUSIC_QUAVERS = _Image()
 
-    PITCHFORK = _Image
+    PITCHFORK = _Image()
 
-    XMAS = _Image
+    XMAS = _Image()
 
-    PACMAN = _Image
-    TARGET = _Image
-    TSHIRT = _Image
-    ROLLERSKATE = _Image
-    DUCK = _Image
-    HOUSE = _Image
-    TORTOISE = _Image
-    BUTTERFLY = _Image
-    STICKFIGURE = _Image
-    GHOST = _Image
-    SWORD = _Image
-    GIRAFFE = _Image
-    SKULL = _Image
-    UMBRELLA = _Image
-    SNAKE = _Image
+    PACMAN = _Image()
+    TARGET = _Image()
+    TSHIRT = _Image()
+    ROLLERSKATE = _Image()
+    DUCK = _Image()
+    HOUSE = _Image()
+    TORTOISE = _Image()
+    BUTTERFLY = _Image()
+    STICKFIGURE = _Image()
+    GHOST = _Image()
+    SWORD = _Image()
+    GIRAFFE = _Image()
+    SKULL = _Image()
+    UMBRELLA = _Image()
+    SNAKE = _Image()
 
     def __new__(self):
         return self
@@ -342,7 +342,7 @@ class _spi:
     def write_readinto(self,out, inBuffer):
         """Write the out buffer to the bus and read any response into the in buffer. The length of the buffers should be the same. The buffers can be the same object."""
 
-spi = _spi
+spi = _spi()
 
 class _uart:
     def init(self, baudrate=9600, bits=8, parity=None, stop=1, *, tx=None, rx=None):
@@ -369,7 +369,7 @@ class _uart:
         """Write the buffer to the bus, it can be a bytes object or a string.
         Return value: number of bytes written or None on timeout."""
 
-uart = _uart
+uart = _uart()
 
 class _i2c:
     def init(self,freq=100000, sda=pin20, scl=pin19):
@@ -387,7 +387,7 @@ class _i2c:
     def write(self,addr, buf, repeat=False):
         """Write bytes from buf to the device with 7-bit address addr. If repeat is True, no stop bit will be sent."""
 
-i2c = _i2c
+i2c = _i2c()
 
 class _compass:
     def calibrate(self):
@@ -420,7 +420,7 @@ class _compass:
         """Returns an integer indication of the magnitude of the magnetic field around the device in nano tesla."""
         return 0
 
-compass = _compass
+compass = _compass()
 
 class _accelerometer:
     def get_x(self):
@@ -455,7 +455,7 @@ class _accelerometer:
         """Return a tuple of the gesture history. The most recent is listed last. Also clears the gesture history before returning."""
         return ()
 
-accelerometer = _accelerometer
+accelerometer = _accelerometer()
 
 
 """Image stuff"""
