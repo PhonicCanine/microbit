@@ -91,7 +91,7 @@ class _MicroBitDigitalPin:
     def __init__(self):
         a = 0
 
-class _MicroBitAnalogDigitalPin:
+class _MicroBitAnalogDigitalPin(_MicroBitDigitalPin):
     """Analog (PWM) pin on the Micro:Bit board"""
 
     def read_analog(self):
@@ -116,7 +116,7 @@ class _MicroBitAnalogDigitalPin:
     def __init__(self):
         a = 0
 
-class _MicroBitTouchPin:
+class _MicroBitTouchPin(_MicroBitAnalogDigitalPin):
     """Touch sensitive pin on the Micro:Bit board"""
 
     def is_touched(self):
